@@ -3,23 +3,69 @@ let currentIndex = 0;
 let remainingSeconds = 0;
 let intervalId = null;
 
-const participantInput = document.getElementById('participant-input');
-const addParticipantBtn = document.getElementById('add-participant');
-const participantsList = document.getElementById('participants-list');
-const minutesInput = document.getElementById('minutes-input');
-const currentSpeakerDiv = document.getElementById('current-speaker');
-const timerDisplay = document.getElementById('timer-display');
-const startButton = document.getElementById('start-button');
-const nextButton = document.getElementById('next-button');
-const resetButton = document.getElementById('reset-button');
-const newDailyButton = document.getElementById('new-daily');
+let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton;
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Inicializar elementos DOM
+  participantInput = document.getElementById('participant-input');
+  addParticipantBtn = document.getElementById('add-participant');
+  participantsList = document.getElementById('participants-list');
+  minutesInput = document.getElementById('minutes-input');
+  currentSpeakerDiv = document.getElementById('current-speaker');
+  timerDisplay = document.getElementById('timer-display');
+  startButton = document.getElementById('start-button');
+  nextButton = document.getElementById('next-button');
+  resetButton = document.getElementById('reset-button');
+  newDailyButton = document.getElementById('new-daily');
+
+  // Carregar participantes e atualizar UI
+  loadParticipants();
+  updateTimerDisplay();
+
+  // Adicionar event listeners
+  addParticipantBtn.addEventListener('click', () => {
+    const name = participantInput.value.trim();
+    if (!name) return;
+    participants.push({ name, done: false });
+    participantInput.value = '';
+    if (participants.length === 1) currentIndex = 0;
+    updateCurrentSpeaker();
+    renderParticipants();
+    saveParticipants();
+  });
+
+  participantInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      addParticipantBtn.click();
+    }
+  });
+
+  startButton.addEventListener('click', startTimer);
+  nextButton.addEventListener('click', nextSpeaker);
+
+  resetButton.addEventListener('click', () => {
+    if (intervalId) clearInterval(intervalId);
+    intervalId = null;
+    remainingSeconds = 0;
+    timerDisplay.style.color = 'black';
+    updateTimerDisplay();
+  });
+
+  newDailyButton.addEventListener('click', () => {
+    participants.forEach(p => p.done = false);
+    currentIndex = 0;
+    updateCurrentSpeaker();
+    renderParticipants();
+    saveParticipants();
+  });
+});
 
 // ----- STORAGE -----
 function saveParticipants() {
   chrome.storage.sync.set({
     meetingParticipants: participants,
     meetingCurrentIndex: currentIndex,
-    meetingMinutes: document.getElementById('minutes-input').value,
+    meetingMinutes: minutesInput.value,
     meetingSeconds: document.getElementById('seconds-input').value
   }, () => {});
 }
@@ -50,7 +96,7 @@ function loadParticipants() {
       updateCurrentSpeaker();
       renderParticipants();
       // recarregar tempos
-      document.getElementById('minutes-input').value = data.meetingMinutes || 2;
+      minutesInput.value = data.meetingMinutes || 2;
       document.getElementById('seconds-input').value = data.meetingSeconds || 30;      
     }
   );
@@ -147,48 +193,6 @@ function nextSpeaker() {
   saveParticipants();
 }
 
-// ----- EVENTOS -----
-addParticipantBtn.addEventListener('click', () => {
-  const name = participantInput.value.trim();
-  if (!name) return;
-  participants.push({ name, done: false });
-  participantInput.value = '';
-  if (participants.length === 1) currentIndex = 0;
-  updateCurrentSpeaker();
-  renderParticipants();
-  saveParticipants();
-});
-
-participantInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter') {
-    addParticipantBtn.click();
-  }
-});
-
-startButton.addEventListener('click', startTimer);
-nextButton.addEventListener('click', nextSpeaker);
-
-resetButton.addEventListener('click', () => {
-  if (intervalId) clearInterval(intervalId);
-  intervalId = null;
-  remainingSeconds = 0;
-  timerDisplay.style.color = 'black';
-  updateTimerDisplay();
-});
-
-newDailyButton.addEventListener('click', () => {
-  participants.forEach(p => p.done = false);
-  currentIndex = 0;
-  updateCurrentSpeaker();
-  renderParticipants();
-  saveParticipants();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  loadParticipants();
-  updateTimerDisplay();
-});
-
 function alertEndOfTime() {
   // beep
   const audio = document.getElementById('beep-audio');
@@ -205,7 +209,7 @@ function alertEndOfTime() {
 }
 
 function getTotalSeconds() {
-  const minutes = parseInt(document.getElementById('minutes-input').value, 10) || 0;
+  const minutes = parseInt(minutesInput.value, 10) || 0;
   const seconds = parseInt(document.getElementById('seconds-input').value, 10) || 0;
   return minutes * 60 + seconds;
 }
