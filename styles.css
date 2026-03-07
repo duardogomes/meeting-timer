@@ -1,6 +1,26 @@
 body { font-family: sans-serif; min-width: 300px; padding: 8px; }
 h2 { margin-top: 0; }
-ul { padding-left: 16px; max-height: 120px; overflow-y: auto; }
-li { cursor: pointer; }
-#timer-display { font-size: 32px; margin: 8px 0; text-align: center; }
+ul { padding-left: 16px; max-height: 140px; overflow-y: auto; }
+li { cursor: pointer; margin-bottom: 2px; }
+#timer-display {
+  font-size: 32px;
+  margin: 8px 0;
+  text-align: center;
+  padding: 4px;
+  border-radius: 4px;
+}
 button { margin: 2px; }
+.remove-btn { margin-left: 8px; }
+.flash-alert {
+  animation: flash-alert 0.5s ease-in-out 0s 4 alternate;
+}
+
+@keyframes flash-alert {
+  from { background-color: #ffeb3b; }  /* amarelo */
+  to   { background-color: #ff5252; }  /* vermelho */
+}
+
+#minutes-input, #seconds-input {
+  width: 45px;
+  margin: 0 2px;
+}

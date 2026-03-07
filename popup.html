@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Daily Timer</title>
-  <style>
-    body { font-family: sans-serif; min-width: 300px; padding: 8px; }
-    h2 { margin-top: 0; }
-    ul { padding-left: 16px; max-height: 140px; overflow-y: auto; }
-    li { cursor: pointer; margin-bottom: 2px; }
-    #timer-display { font-size: 32px; margin: 8px 0; text-align: center; }
-    button { margin: 2px; }
-    .remove-btn { margin-left: 8px; }
-  </style>
-</head>
-<body>
-  <h2>Daily Timer</h2>
+  <head>
+    <meta charset="UTF-8">
+    <title>Daily Timer</title>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <h2>Daily Timer</h2>
 
-  <div>
-    <input id="participant-input" type="text" placeholder="Nome">
-    <button id="add-participant">+</button>
-  </div>
+    <div>
+      <input id="participant-input" type="text" placeholder="Nome">
+      <button id="add-participant">+</button>
+    </div>
 
-  <ul id="participants-list"></ul>
+    <ul id="participants-list"></ul>
 
-  <div>
-    <label>Tempo por pessoa (min):</label>
-    <input id="minutes-input" type="number" min="1" value="2">
-  </div>
+    <div>
+      <label>Tempo por pessoa:</label><br>
+      <input id="minutes-input" type="number" min="0" max="60" value="2"> min
+      <input id="seconds-input" type="number" min="0" max="59" value="30"> seg
+    </div>
 
-  <div id="current-speaker">Nenhum participante</div>
-  <div id="timer-display">00:00</div>
+    <div id="current-speaker">Nenhum participante</div>
+    <div id="timer-display">00:00</div>
 
-  <button id="start-button">Iniciar</button>
-  <button id="next-button">Próximo</button>
-  <button id="reset-button">Resetar timer</button>
-  <button id="new-daily">Nova daily</button>
+    <button id="start-button">Iniciar</button>
+    <button id="next-button">Próximo</button>
+    <button id="reset-button">Resetar timer</button>
+    <button id="new-daily">Nova daily</button>
 
-  <script src="popup.js"></script>
-</body>
+    <audio id="beep-audio">
+      <source src="https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3" type="audio/mpeg">
+    </audio>
+
+  </body>
 </html>

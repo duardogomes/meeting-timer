@@ -16,15 +16,22 @@ const newDailyButton = document.getElementById('new-daily');
 
 // ----- STORAGE -----
 function saveParticipants() {
-  chrome.storage.sync.set(
-    { meetingParticipants: participants, meetingCurrentIndex: currentIndex },
-    () => {}
-  );
+  chrome.storage.sync.set({
+    meetingParticipants: participants,
+    meetingCurrentIndex: currentIndex,
+    meetingMinutes: document.getElementById('minutes-input').value,
+    meetingSeconds: document.getElementById('seconds-input').value
+  }, () => {});
 }
 
 function loadParticipants() {
   chrome.storage.sync.get(
-    { meetingParticipants: null, meetingCurrentIndex: 0 },
+    { 
+      meetingParticipants: null, 
+      meetingCurrentIndex: 0,
+      meetingMinutes: 2,
+      meetingSeconds: 30
+    },
     (data) => {
       if (data.meetingParticipants && data.meetingParticipants.length > 0) {
         participants = data.meetingParticipants;
@@ -42,6 +49,9 @@ function loadParticipants() {
       }
       updateCurrentSpeaker();
       renderParticipants();
+      // recarregar tempos
+      document.getElementById('minutes-input').value = data.meetingMinutes || 2;
+      document.getElementById('seconds-input').value = data.meetingSeconds || 30;      
     }
   );
 }
@@ -104,8 +114,10 @@ function startTimer() {
   if (!participants[currentIndex]) return;
   if (intervalId) clearInterval(intervalId);
 
-  const minutes = parseInt(minutesInput.value, 10) || 1;
-  remainingSeconds = minutes * 60;
+  remainingSeconds = getTotalSeconds();
+  if (remainingSeconds <= 0) {
+    remainingSeconds = 60; // fallback 1 min
+  }
   timerDisplay.style.color = 'black';
   updateTimerDisplay();
 
@@ -119,6 +131,7 @@ function startTimer() {
       participants[currentIndex].done = true;
       renderParticipants();
       saveParticipants();
+      alertEndOfTime(); // beep + flash
     }
   }, 1000);
 }
@@ -175,3 +188,24 @@ document.addEventListener('DOMContentLoaded', () => {
   loadParticipants();
   updateTimerDisplay();
 });
+
+function alertEndOfTime() {
+  // beep
+  const audio = document.getElementById('beep-audio');
+  if (audio) {
+    // algumas vezes é bom resetar para o início
+    audio.currentTime = 0;
+    audio.play().catch(() => {}); // ignora erro se o navegador bloquear
+  }
+
+  // alerta visual no timer
+  timerDisplay.classList.remove('flash-alert'); // reset
+  void timerDisplay.offsetWidth; // força reflow para reiniciar animação
+  timerDisplay.classList.add('flash-alert');
+}
+
+function getTotalSeconds() {
+  const minutes = parseInt(document.getElementById('minutes-input').value, 10) || 0;
+  const seconds = parseInt(document.getElementById('seconds-input').value, 10) || 0;
+  return minutes * 60 + seconds;
+}
