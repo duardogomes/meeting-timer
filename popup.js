@@ -130,7 +130,12 @@ function renderParticipants() {
 
     const nameSpan = document.createElement('span');
     nameSpan.textContent = p.name + (p.done ? ' ✓' : '');
-    if (index === currentIndex) nameSpan.style.fontWeight = 'bold';
+    if (index === currentIndex) {
+      li.classList.add('current');
+      nameSpan.style.fontWeight = 'bold';
+    } else {
+      li.classList.remove('current');
+    }
 
     nameSpan.addEventListener('click', () => {
       currentIndex = index;

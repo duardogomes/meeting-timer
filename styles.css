@@ -1,8 +1,8 @@
 body { 
   font-family: sans-serif; 
-  min-width: 360px;
-  max-width: 480px;
-  padding: 8px;
+  min-width: 270px;    /* 75% of previous 360 */
+  max-width: 360px;    /* 75% of previous 480 */
+  padding: 6px;        /* slightly smaller padding */
   overflow: auto;
   resize: both;
   box-sizing: border-box;
@@ -26,6 +26,16 @@ li { cursor: pointer; margin-bottom: 2px; }
   gap: 8px;
 }
 
+#participants-list li.current {
+  background-color: rgba(255, 215, 0, 0.1);
+}
+
+#participants-list li.current span {
+  font-size: 18px;
+  font-weight: 700;
+  color: #d84315;
+}
+
 #participants-list li span {
   flex-grow: 1;
   word-break: break-word;
@@ -42,10 +52,10 @@ li { cursor: pointer; margin-bottom: 2px; }
 }
 
 #timer-display {
-  font-size: 32px;
-  margin: 12px 0;
+  font-size: 24px; /* reduced size */
+  margin: 10px 0;
   text-align: center;
-  padding: 8px;
+  padding: 6px;
   border-radius: 4px;
 }
 
@@ -212,33 +222,33 @@ input[type="text"], input[type="number"] {
 
 /* Colorful Theme */
 .colorful {
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
-  color: #333333;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #43a1ff 100%);
+  color: #0f1c3f;
 }
 .colorful h2 {
-  color: #333333;
+  color: #0f1c3f;
   text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
 }
 .colorful input, .colorful select {
   background-color: rgba(255,255,255,0.8);
-  color: #333333;
-  border: 2px solid #ff6b9d;
+  color: #0f1c3f;
+  border: 2px solid #0073e6;
   border-radius: 8px;
 }
 .colorful button {
-  background-color: #ff6b9d;
+  background-color: #0073e6;
   color: #ffffff;
   border: none;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 .colorful button:hover {
-  background-color: #ff4a7d;
+  background-color: #005bb5;
 }
 .colorful #timer-display {
   background-color: rgba(255,255,255,0.9);
-  color: #333333;
-  border: 2px solid #ff6b9d;
+  color: #0f1c3f;
+  border: 2px solid #0073e6;
   border-radius: 12px;
 }
 .colorful .flash-alert {
@@ -246,5 +256,5 @@ input[type="text"], input[type="number"] {
 }
 @keyframes flash-alert-colorful {
   from { background-color: rgba(255,255,255,0.9); }
-  to   { background-color: #ffcccc; }
+  to   { background-color: #cce4ff; }
 }
