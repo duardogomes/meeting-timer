@@ -1,23 +1,39 @@
 body { 
   font-family: sans-serif; 
-  min-width: 400px;
-  min-height: 500px;
-  padding: 8px;
+  min-width: 600px;
+  padding: 12px;
   overflow: auto;
   resize: both;
+  box-sizing: border-box;
 }
-h2 { margin-top: 0; }
-ul { padding-left: 16px; max-height: 140px; overflow-y: auto; }
+h2 { margin-top: 0; margin-bottom: 8px; }
+
+div { box-sizing: border-box; }
+
+ul { 
+  padding-left: 16px; 
+  max-height: 140px; 
+  overflow-y: auto;
+  margin: 8px 0;
+}
 li { cursor: pointer; margin-bottom: 2px; }
+
 #timer-display {
   font-size: 32px;
-  margin: 8px 0;
+  margin: 12px 0;
   text-align: center;
-  padding: 4px;
+  padding: 8px;
   border-radius: 4px;
 }
-button { margin: 2px; }
+
+button { 
+  margin: 4px; 
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
 .remove-btn { margin-left: 8px; }
+
 .flash-alert {
   animation: flash-alert 0.5s ease-in-out 0s 4 alternate;
 }
@@ -27,7 +43,23 @@ button { margin: 2px; }
   to   { background-color: #ff5252; }  /* vermelho */
 }
 
+#participant-input {
+  padding: 6px;
+  min-width: 250px;
+  box-sizing: border-box;
+}
+
+#add-participant { 
+  margin-left: 4px;
+  padding: 6px 12px;
+}
+
 #minutes-input, #seconds-input {
-  width: 45px;
-  margin: 0 2px;
+  width: 50px;
+  padding: 6px;
+  margin: 0 4px;
+}
+
+input[type="text"], input[type="number"] {
+  padding: 6px;
 }

@@ -7,32 +7,38 @@
   <body>
     <h2>Daily Timer</h2>
 
-    <div>
+    <div style="display: flex; gap: 4px; margin-bottom: 8px;">
       <input id="participant-input" type="text" placeholder="Nome">
       <button id="add-participant">+</button>
     </div>
 
     <ul id="participants-list"></ul>
 
-    <div>
-      <label>Tempo por pessoa:</label><br>
-      <input id="minutes-input" type="number" min="0" max="60" value="2"> min
-      <input id="seconds-input" type="number" min="0" max="59" value="30"> seg
+    <div style="margin: 8px 0;">
+      <label style="display: block; margin-bottom: 4px;">Tempo por pessoa:</label>
+      <div style="display: flex; gap: 4px; align-items: center;">
+        <input id="minutes-input" type="number" min="0" max="60" value="2">
+        <span>min</span>
+        <input id="seconds-input" type="number" min="0" max="59" value="30">
+        <span>seg</span>
+      </div>
     </div>
 
     <div>
       <label>
-        <input id="sound-checkbox" type="checkbox" checked> Alerta sonoro2
+        <input id="sound-checkbox" type="checkbox" checked> Alerta sonoro
       </label>
     </div>
 
     <div id="current-speaker">Nenhum participante</div>
     <div id="timer-display">00:00</div>
 
-    <button id="start-button">Iniciar</button>
-    <button id="next-button">Próximo</button>
-    <button id="reset-button">Resetar timer</button>
-    <button id="new-daily">Nova daily</button>
+    <div style="display: flex; gap: 4px; flex-wrap: wrap; margin: 8px 0;">
+      <button id="start-button">Iniciar</button>
+      <button id="next-button">Próximo</button>
+      <button id="reset-button">Resetar timer</button>
+      <button id="new-daily">Nova daily</button>
+    </div>
 
     <audio id="beep-audio">
       <source src="https://media.geeksforgeeks.org/wp-content/uploads/20190531135120/beep.mp3" type="audio/mpeg">
