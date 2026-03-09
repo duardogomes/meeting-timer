@@ -1,8 +1,8 @@
 body { 
   font-family: sans-serif; 
-  min-width: 350px;
-  width: 350px;
-  height: 350px;
+  min-width: 450px;
+  width: 450px;
+  height: auto;
   padding: 8px;
   overflow-y: auto;
 }
