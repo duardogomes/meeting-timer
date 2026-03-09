@@ -3,7 +3,7 @@ let currentIndex = 0;
 let remainingSeconds = 0;
 let intervalId = null;
 
-let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton;
+let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Inicializar elementos DOM
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   nextButton = document.getElementById('next-button');
   resetButton = document.getElementById('reset-button');
   newDailyButton = document.getElementById('new-daily');
+  soundCheckbox = document.getElementById('sound-checkbox');
 
   // Carregar participantes e atualizar UI
   loadParticipants();
@@ -58,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderParticipants();
     saveParticipants();
   });
+
+  soundCheckbox.addEventListener('change', saveParticipants);
 });
 
 // ----- STORAGE -----
@@ -66,7 +69,8 @@ function saveParticipants() {
     meetingParticipants: participants,
     meetingCurrentIndex: currentIndex,
     meetingMinutes: minutesInput.value,
-    meetingSeconds: document.getElementById('seconds-input').value
+    meetingSeconds: document.getElementById('seconds-input').value,
+    soundEnabled: soundCheckbox.checked
   }, () => {});
 }
 
@@ -76,7 +80,8 @@ function loadParticipants() {
       meetingParticipants: null, 
       meetingCurrentIndex: 0,
       meetingMinutes: 2,
-      meetingSeconds: 30
+      meetingSeconds: 30,
+      soundEnabled: true
     },
     (data) => {
       if (data.meetingParticipants && data.meetingParticipants.length > 0) {
@@ -97,7 +102,8 @@ function loadParticipants() {
       renderParticipants();
       // recarregar tempos
       minutesInput.value = data.meetingMinutes || 2;
-      document.getElementById('seconds-input').value = data.meetingSeconds || 30;      
+      document.getElementById('seconds-input').value = data.meetingSeconds || 30;
+      soundCheckbox.checked = data.soundEnabled !== false; // default true
     }
   );
 }
@@ -195,11 +201,13 @@ function nextSpeaker() {
 
 function alertEndOfTime() {
   // beep
-  const audio = document.getElementById('beep-audio');
-  if (audio) {
-    // algumas vezes é bom resetar para o início
-    audio.currentTime = 0;
-    audio.play().catch(() => {}); // ignora erro se o navegador bloquear
+  if (soundCheckbox.checked) {
+    const audio = document.getElementById('beep-audio');
+    if (audio) {
+      // algumas vezes é bom resetar para o início
+      audio.currentTime = 0;
+      audio.play().catch(() => {}); // ignora erro se o navegador bloquear
+    }
   }
 
   // alerta visual no timer
