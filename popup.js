@@ -3,7 +3,7 @@ let currentIndex = 0;
 let remainingSeconds = 0;
 let intervalId = null;
 
-let participantInput, addParticipantBtn, participantsList, minutesInput, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox, themeSelect;
+let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox, themeSelect;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Inicializar elementos DOM
@@ -11,6 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
   addParticipantBtn = document.getElementById('add-participant');
   participantsList = document.getElementById('participants-list');
   minutesInput = document.getElementById('minutes-input');
+  // ensure list container exists
+  if (!participantsList) {
+    console.warn('participants-list element not found, creating fallback');
+    participantsList = document.createElement('ul');
+    participantsList.id = 'participants-list';
+    const ref = document.querySelector('#participant-input')?.parentNode;
+    if (ref && ref.parentNode) {
+      ref.parentNode.insertBefore(participantsList, ref.nextSibling);
+    } else {
+      document.body.appendChild(participantsList);
+    }
+  }
+  currentSpeakerDiv = document.getElementById('current-speaker');
   timerDisplay = document.getElementById('timer-display');
   startButton = document.getElementById('start-button');
   nextButton = document.getElementById('next-button');
@@ -123,6 +136,10 @@ function applyTheme(theme) {
 
 // ----- RENDER -----
 function renderParticipants() {
+  if (!participantsList) {
+    console.error('renderParticipants called without participantsList element');
+    return;
+  }
   participantsList.innerHTML = '';
   participants.forEach((p, index) => {
     const li = document.createElement('li');
