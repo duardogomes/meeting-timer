@@ -3,7 +3,7 @@ let currentIndex = 0;
 let remainingSeconds = 0;
 let intervalId = null;
 
-let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox;
+let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox, themeSelect;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Inicializar elementos DOM
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   resetButton = document.getElementById('reset-button');
   newDailyButton = document.getElementById('new-daily');
   soundCheckbox = document.getElementById('sound-checkbox');
+  themeSelect = document.getElementById('theme-select');
 
   // Carregar participantes e atualizar UI
   loadParticipants();
@@ -61,6 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   soundCheckbox.addEventListener('change', saveParticipants);
+  themeSelect.addEventListener('change', () => {
+    applyTheme(themeSelect.value);
+    saveParticipants();
+  });
 });
 
 // ----- STORAGE -----
@@ -70,7 +75,8 @@ function saveParticipants() {
     meetingCurrentIndex: currentIndex,
     meetingMinutes: minutesInput.value,
     meetingSeconds: document.getElementById('seconds-input').value,
-    soundEnabled: soundCheckbox.checked
+    soundEnabled: soundCheckbox.checked,
+    theme: themeSelect.value
   }, () => {});
 }
 
@@ -81,7 +87,8 @@ function loadParticipants() {
       meetingCurrentIndex: 0,
       meetingMinutes: 2,
       meetingSeconds: 30,
-      soundEnabled: true
+      soundEnabled: true,
+      theme: 'default'
     },
     (data) => {
       if (data.meetingParticipants && data.meetingParticipants.length > 0) {
@@ -104,8 +111,15 @@ function loadParticipants() {
       minutesInput.value = data.meetingMinutes || 2;
       document.getElementById('seconds-input').value = data.meetingSeconds || 30;
       soundCheckbox.checked = data.soundEnabled !== false; // default true
+      themeSelect.value = data.theme || 'default';
+      applyTheme(data.theme || 'default');
     }
   );
+}
+
+// ----- THEME -----
+function applyTheme(theme) {
+  document.body.className = theme;
 }
 
 // ----- RENDER -----

@@ -98,6 +98,10 @@ daily-timer/
 - **chrome.storage.sync** (sincroniza entre dispositivos)
 - **AudioContext** não usado (simples `<audio>` funciona na popup)
 - **CSS animations** para flash visual
+
+## Sobre
+
+Esta extensão foi desenvolvida com o auxílio de Inteligência Artificial, utilizando ferramentas como o GitHub Copilot para acelerar o processo de codificação, depuração e otimização do código. A IA ajudou na geração de ideias, na escrita de código JavaScript, CSS e na estruturação geral do projeto, garantindo uma implementação eficiente e funcional.
 - **Nenhuma permissão externa** além de `storage`
 
 ## 🤔 Solução de problemas
