@@ -11,18 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   addParticipantBtn = document.getElementById('add-participant');
   participantsList = document.getElementById('participants-list');
   minutesInput = document.getElementById('minutes-input');
-  // ensure list container exists
-  if (!participantsList) {
-    console.warn('participants-list element not found, creating fallback');
-    participantsList = document.createElement('ul');
-    participantsList.id = 'participants-list';
-    const ref = document.querySelector('#participant-input')?.parentNode;
-    if (ref && ref.parentNode) {
-      ref.parentNode.insertBefore(participantsList, ref.nextSibling);
-    } else {
-      document.body.appendChild(participantsList);
-    }
-  }
   currentSpeakerDiv = document.getElementById('current-speaker');
   timerDisplay = document.getElementById('timer-display');
   startButton = document.getElementById('start-button');
@@ -247,4 +235,13 @@ function getTotalSeconds() {
   const minutes = parseInt(minutesInput.value, 10) || 0;
   const seconds = parseInt(document.getElementById('seconds-input').value, 10) || 0;
   return minutes * 60 + seconds;
+}
+
+
+function updateCurrentSpeaker() {
+  if (participants[currentIndex]) {
+    currentSpeakerDiv.textContent = 'Falando agora: ' + participants[currentIndex].name;
+  } else {
+    currentSpeakerDiv.textContent = 'Nenhum participante';
+  }
 }
