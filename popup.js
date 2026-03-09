@@ -3,7 +3,7 @@ let currentIndex = 0;
 let remainingSeconds = 0;
 let intervalId = null;
 
-let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox, themeSelect;
+let participantInput, addParticipantBtn, participantsList, minutesInput, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox, themeSelect;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Inicializar elementos DOM
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   addParticipantBtn = document.getElementById('add-participant');
   participantsList = document.getElementById('participants-list');
   minutesInput = document.getElementById('minutes-input');
-  currentSpeakerDiv = document.getElementById('current-speaker');
   timerDisplay = document.getElementById('timer-display');
   startButton = document.getElementById('start-button');
   nextButton = document.getElementById('next-button');
@@ -160,14 +159,6 @@ function renderParticipants() {
     li.appendChild(removeBtn);
     participantsList.appendChild(li);
   });
-}
-
-function updateCurrentSpeaker() {
-  if (participants[currentIndex]) {
-    currentSpeakerDiv.textContent = 'Falando agora: ' + participants[currentIndex].name;
-  } else {
-    currentSpeakerDiv.textContent = 'Nenhum participante';
-  }
 }
 
 // ----- TIMER -----
