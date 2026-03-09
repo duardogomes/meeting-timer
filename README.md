@@ -7,10 +7,10 @@ Uma extensão simples para Chrome otimizada para **dailies** com timer por pesso
 - ✅ Lista de participantes editável (adicionar/remover com "X")  
 - 💾 **Persistência automática** com `chrome.storage.sync` (nomes salvos entre dias)  
 - ⏱️ Timer configurável em **minutos + segundos** (ex: 2:30)  
-- 🔊 **Beep + flash visual** quando o tempo de alguém acaba  
+- 🔊 **Alerta sonoro opcional** + flash visual quando o tempo acaba  
 - 📋 Fluxo otimizado para 5 pessoas (Dev1-Dev5 pré-carregados)  
 - 🔄 "Nova daily" para limpar checks sem perder nomes  
-- 🎯 Interface compacta para popup do Chrome (300px largura)
+- 🎯 Interface redimensionável (mínimo 400px × 500px)
 
 ## 🚀 Como usar
 
@@ -28,7 +28,8 @@ Uma extensão simples para Chrome otimizada para **dailies** com timer por pesso
 1. Clique no ícone da extensão
 2. Edite Dev1→Dev5 para nomes reais
 3. Configure tempo padrão (ex: 2 min 30 seg)
-4. Feche e reabra → nomes salvos!
+4. (Opcional) Desmarque "Alerta sonoro" se preferir apenas alerta visual
+5. Feche e reabra → configurações salvas!
 ```
 
 ### 3. Durante a daily
@@ -36,7 +37,8 @@ Uma extensão simples para Chrome otimizada para **dailies** com timer por pesso
 1. "Nova daily" → limpa checks ✓
 2. Defina tempo → "Iniciar" 
 3. "Próximo" → avança automaticamente
-4. Beep + flash = tempo acabou!
+4. Flash + som (se habilitado) = tempo acabou!
+5. Redimensione a janela conforme necessário (arraste o canto inferior direito)
 ```
 
 ## 📁 Estrutura do projeto
@@ -50,6 +52,17 @@ daily-timer/
 ```
 
 ## 🎨 Personalizações comuns
+
+### Redimensionar a janela
+- Passe o mouse no **canto inferior direito** da popup
+- Um cursor de redimensionamento aparecerá
+- **Arraste** para ajustar o tamanho conforme preferir
+- O tamanho é salvo localmente pelo navegador
+
+### Controlar o alerta sonoro
+- A opção **"Alerta sonoro"** aparece nas configurações
+- Marque para habilitar (padrão) ou desmarque para apenas alerta visual
+- A preferência é salva automaticamente com `chrome.storage.sync`
 
 ### Tempos típicos de daily
 ```
@@ -111,5 +124,5 @@ MIT License - Use, modifique e distribua livremente.
 
 ***
 
-**Feito com ❤️ para facilitar dailies!**  
+**Feito para facilitar dailies!**  
 *Eduardo Gomes - Santa Bárbara d'Oeste, SP - Março 2026*
