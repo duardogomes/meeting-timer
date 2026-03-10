@@ -28,26 +28,27 @@ ul {
 }
 
 #participant-input {
-  padding: 5px;
-  width: calc(100% - 40px);
+  padding: 4px;
+  width: calc(100% - 32px);
   min-width: 0;
   box-sizing: border-box;
+  font-size: 12px;
 }
-li { cursor: pointer; margin-bottom: 2px; }
+li { cursor: pointer; margin-bottom: 1px; }
 
 #participants-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 #participants-list li.current {
-  background-color: rgba(255, 215, 0, 0.1);
+  background-color: rgba(255, 215, 0, 0.08);
 }
 
 #participants-list li.current span {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   color: #d84315;
 }
@@ -76,17 +77,22 @@ li { cursor: pointer; margin-bottom: 2px; }
 }
 
 button { 
-  margin: 4px; 
-  padding: 8px 12px;
+  margin: 3px; 
+  padding: 6px 9px;
   cursor: pointer;
+  font-size: 12px;
 }
 
-#open-fixed-button, #close-popup {
+#open-fixed-button {
   min-width: 0;
-  padding: 6px 8px;
+  padding: 5px 8px;
 }
 
-.remove-btn { }
+.remove-btn { 
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+}
 
 .flash-alert {
   animation: flash-alert 0.5s ease-in-out 0s 4 alternate;
@@ -98,24 +104,29 @@ button {
 }
 
 #participant-input {
-  padding: 6px;
-  min-width: 250px;
+  padding: 4px;
+  min-width: 0;
+  width: calc(100% - 32px);
   box-sizing: border-box;
+  font-size: 12px;
 }
 
 #add-participant { 
-  margin-left: 4px;
-  padding: 6px 12px;
+  margin-left: 3px;
+  padding: 4px 8px;
+  font-size: 12px;
 }
 
 #minutes-input, #seconds-input {
-  width: 50px;
-  padding: 6px;
-  margin: 0 4px;
+  width: 38px;
+  padding: 4px;
+  margin: 0 3px;
+  font-size: 12px;
 }
 
 input[type="text"], input[type="number"] {
-  padding: 6px;
+  padding: 4px;
+  font-size: 12px;
 }
 
 /* ----- THEMES ----- */

@@ -4,7 +4,7 @@ let remainingSeconds = 0;
 let intervalId = null;
 
 let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox, themeSelect;
-let openFixedButton, closePopupButton, fixedWindowStatus;
+let openFixedButton, fixedWindowStatus;
 let fixedWindowId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   soundCheckbox = document.getElementById('sound-checkbox');
   themeSelect = document.getElementById('theme-select');
   openFixedButton = document.getElementById('open-fixed-button');
-  closePopupButton = document.getElementById('close-popup');
   fixedWindowStatus = document.getElementById('fixed-window-status');
 
   // Carregar participantes e atualizar UI
@@ -91,10 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setFixedWindowStatus(true);
       }
     });
-  });
-
-  closePopupButton.addEventListener('click', () => {
-    window.close();
   });
 
   chrome.windows.onRemoved.addListener((windowId) => {
