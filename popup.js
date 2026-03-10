@@ -4,6 +4,8 @@ let remainingSeconds = 0;
 let intervalId = null;
 
 let participantInput, addParticipantBtn, participantsList, minutesInput, currentSpeakerDiv, timerDisplay, startButton, nextButton, resetButton, newDailyButton, soundCheckbox, themeSelect;
+let openFixedButton, closePopupButton, fixedWindowStatus;
+let fixedWindowId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Inicializar elementos DOM
@@ -19,10 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
   newDailyButton = document.getElementById('new-daily');
   soundCheckbox = document.getElementById('sound-checkbox');
   themeSelect = document.getElementById('theme-select');
+  openFixedButton = document.getElementById('open-fixed-button');
+  closePopupButton = document.getElementById('close-popup');
+  fixedWindowStatus = document.getElementById('fixed-window-status');
 
   // Carregar participantes e atualizar UI
   loadParticipants();
   updateTimerDisplay();
+  setFixedWindowStatus(false);
 
   // Adicionar event listeners
   addParticipantBtn.addEventListener('click', () => {
@@ -66,7 +72,44 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(themeSelect.value);
     saveParticipants();
   });
+
+  openFixedButton.addEventListener('click', () => {
+    if (fixedWindowId !== null) {
+      // já existe uma janela fixa aberta, focar e não criar nova
+      chrome.windows.update(fixedWindowId, { focused: true });
+      return;
+    }
+
+    chrome.windows.create({
+      url: chrome.runtime.getURL('popup.html'),
+      type: 'popup',
+      width: 230,
+      height: 390
+    }, (newWindow) => {
+      if (newWindow && newWindow.id != null) {
+        fixedWindowId = newWindow.id;
+        setFixedWindowStatus(true);
+      }
+    });
+  });
+
+  closePopupButton.addEventListener('click', () => {
+    window.close();
+  });
+
+  chrome.windows.onRemoved.addListener((windowId) => {
+    if (windowId === fixedWindowId) {
+      fixedWindowId = null;
+      setFixedWindowStatus(false);
+    }
+  });
 });
+
+function setFixedWindowStatus(isOpen) {
+  if (!fixedWindowStatus) return;
+  fixedWindowStatus.textContent = isOpen ? 'Janela fixa aberta' : 'Nenhuma janela fixa';
+  fixedWindowStatus.style.color = isOpen ? 'green' : '#333';
+}
 
 // ----- STORAGE -----
 function saveParticipants() {

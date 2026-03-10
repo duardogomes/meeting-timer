@@ -1,21 +1,37 @@
-body { 
-  font-family: sans-serif; 
-  min-width: 270px;    /* 75% of previous 360 */
-  max-width: 360px;    /* 75% of previous 480 */
-  padding: 6px;        /* slightly smaller padding */
+body {
+  font-family: sans-serif;
+  width: 230px;
+  min-width: 230px;
+  max-width: 230px;
+  height: 390px;
+  min-height: 390px;
+  max-height: 390px;
+  padding: 6px;
   overflow: auto;
-  resize: both;
+  resize: none;
   box-sizing: border-box;
 }
-h2 { margin-top: 0; margin-bottom: 8px; }
+h2 { margin-top: 0; margin-bottom: 6px; font-size: 16px; }
 
 div { box-sizing: border-box; }
 
-ul { 
-  padding-left: 16px; 
-  max-height: 140px; 
+ul {
+  padding-left: 12px;
+  max-height: 140px;
+  min-height: 120px;
   overflow-y: auto;
-  margin: 8px 0;
+  margin: 6px 0;
+}
+
+#participants-list li {
+  line-height: 1.2;
+}
+
+#participant-input {
+  padding: 5px;
+  width: calc(100% - 40px);
+  min-width: 0;
+  box-sizing: border-box;
 }
 li { cursor: pointer; margin-bottom: 2px; }
 
@@ -63,6 +79,11 @@ button {
   margin: 4px; 
   padding: 8px 12px;
   cursor: pointer;
+}
+
+#open-fixed-button, #close-popup {
+  min-width: 0;
+  padding: 6px 8px;
 }
 
 .remove-btn { }
@@ -258,3 +279,25 @@ input[type="text"], input[type="number"] {
   from { background-color: rgba(255,255,255,0.9); }
   to   { background-color: #cce4ff; }
 }
+
+/* Small popup 230x390 adjustments */
+@media (max-width: 230px), (max-height: 390px) {
+  body {
+    width: 230px;
+    height: 390px;
+    padding: 4px;
+  }
+  h2 { font-size: 15px; margin-bottom: 4px; }
+  label, span, input, select, button { font-size: 12px; }
+  #timer-display { font-size: 18px; padding: 6px; margin: 6px 0; }
+  button { margin: 2px; padding: 5px 8px; }
+  #participant-input { width: calc(100% - 34px); }
+  #add-participant { padding: 5px 8px; }
+  #minutes-input, #seconds-input { width: 38px; padding: 4px; margin: 0 2px; }
+  #participants-list { max-height: 128px; min-height: 110px; margin: 5px 0; }
+  #participants-list li span { font-size: 12px; }
+  #participants-list li .remove-btn { width: 24px; height: 24px; font-size: 12px; }
+  .minimal h2, .dark h2, .colorful h2 { font-size: 15px; }
+  .minimal #timer-display, .dark #timer-display, .colorful #timer-display { padding: 8px; }
+}
+
