@@ -6,8 +6,8 @@ body {
   height: 390px;
   min-height: 390px;
   max-height: 390px;
-  padding: 4px;
-  overflow: hidden;
+  padding: 3px;
+  overflow: auto;
   resize: none;
   box-sizing: border-box;
 }
@@ -90,10 +90,10 @@ div { box-sizing: border-box; }
 
 ul {
   padding-left: 10px;
-  max-height: 84px; /* 5 linhas x ~17px cada */
-  min-height: 84px;
-  overflow-y: hidden;
-  margin: 3px 0;
+  max-height: 100px; /* 5 linhas x 18px */
+  min-height: 100px;
+  overflow-y: auto;
+  margin: 2px 0;
 }
 
 ul.scroll-enabled {
@@ -102,10 +102,19 @@ ul.scroll-enabled {
 
 
 #participants-list li {
-  line-height: 1.0;
-  padding: 2px 2px;
+  line-height: 16px;
+  padding: 1px 2px;
+  height: 18px;
   min-height: 18px;
   font-size: 11px;
+}
+
+#participants-list li span { line-height: 16px; }
+
+#participants-list li .remove-btn {
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
 }
 
 #participant-input {
@@ -163,10 +172,10 @@ li { cursor: pointer; margin-bottom: 1px; }
 }
 
 #timer-display {
-  font-size: 18px;
+  font-size: 17px;
   margin: 0;
   text-align: center;
-  padding: 3px;
+  padding: 2px;
   border-radius: 4px;
   min-width: 60px;
   max-width: 80px;
