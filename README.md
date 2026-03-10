@@ -126,7 +126,6 @@ Esta extensão foi desenvolvida com o auxílio de Inteligência Artificial, util
 - [ ] Timer em background (`chrome.alarms`)
 - [ ] Notificação desktop quando tempo acaba
 - [ ] Exportar relatório da daily
-- [ ] Tema escuro/claro
 
 ## 📄 Licença
 
