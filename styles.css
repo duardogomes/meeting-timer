@@ -58,14 +58,16 @@ h2 { margin-top: 0; margin-bottom: 6px; }
 
 .action-row {
   display: flex;
-  gap: 4px;
+  justify-content: flex-start;
+  gap: 2px;
   flex-wrap: nowrap;
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
 .action-button {
-  padding: 5px 8px;
-  font-size: 11px;
+  padding: 4px 6px;
+  font-size: 10px;
+  min-width: 0;
 }
 
 div { box-sizing: border-box; }
@@ -81,15 +83,18 @@ div { box-sizing: border-box; }
 }
 
 ul {
-  padding-left: 12px;
-  max-height: 140px;
-  min-height: 120px;
-  overflow-y: auto;
-  margin: 6px 0;
+  padding-left: 10px;
+  max-height: 106px; /* espaço suficiente para 5 linhas pequenas sem scroll */
+  min-height: 106px;
+  overflow-y: hidden;
+  margin: 4px 0;
 }
 
 #participants-list li {
-  line-height: 1.2;
+  line-height: 1.1;
+  padding: 3px 2px;
+  min-height: 20px;
+  font-size: 12px;
 }
 
 #participant-input {
@@ -105,7 +110,7 @@ li { cursor: pointer; margin-bottom: 1px; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 #participants-list li.current {
@@ -113,10 +118,11 @@ li { cursor: pointer; margin-bottom: 1px; }
 }
 
 #participants-list li.current span {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
   color: #d84315;
 }
+
 
 #participants-list li span {
   flex-grow: 1;
@@ -125,20 +131,34 @@ li { cursor: pointer; margin-bottom: 1px; }
 
 #participants-list li .remove-btn {
   flex-shrink: 0;
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 11px;
+}
+
+#current-speaker {
+  font-size: 12px;
+  margin: 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 216px;
 }
 
 #timer-display {
-  font-size: 24px; /* reduced size */
-  margin: 10px 0;
+  font-size: 18px;
+  margin: 8px 0;
   text-align: center;
-  padding: 6px;
+  padding: 4px;
   border-radius: 4px;
+  min-width: 180px;
+  max-width: 216px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button { 
