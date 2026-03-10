@@ -8,6 +8,8 @@ Uma extensão simples para Chrome otimizada para **dailies** com timer por pesso
 - 💾 **Persistência automática** com `chrome.storage.sync` (nomes salvos entre dias)  
 - ⏱️ Timer configurável em **minutos + segundos** (ex: 2:30)  
 - 🔊 **Alerta sonoro opcional** + flash visual quando o tempo acaba  
+- 🎨 Temas integrados (Padrão, Escuro, Minimalista, Colorido)  
+- 📌 Janela fixa disponível (botão “Abrir em janela fixa” + status)  
 - 📋 Fluxo otimizado para 5 pessoas (Dev1-Dev5 pré-carregados)  
 - 🔄 "Nova daily" para limpar checks sem perder nomes  
 - 🎯 Interface redimensionável (mínimo 400px × 500px)
@@ -29,7 +31,9 @@ Uma extensão simples para Chrome otimizada para **dailies** com timer por pesso
 2. Edite Dev1→Dev5 para nomes reais
 3. Configure tempo padrão (ex: 2 min 30 seg)
 4. (Opcional) Desmarque "Alerta sonoro" se preferir apenas alerta visual
-5. Feche e reabra → configurações salvas!
+5. Escolha tema (Padrão / Escuro / Minimalista / Colorido)
+6. Use "Abrir em janela fixa" para manter timer sempre visível
+7. Feche e reabra → configurações salvas!
 ```
 
 ### 3. Durante a daily
@@ -38,7 +42,9 @@ Uma extensão simples para Chrome otimizada para **dailies** com timer por pesso
 2. Defina tempo → "Iniciar" 
 3. "Próximo" → avança automaticamente
 4. Flash + som (se habilitado) = tempo acabou!
-5. Redimensione a janela conforme necessário (arraste o canto inferior direito)
+5. Troque de tema com o seletor de tema
+6. Use "Abrir em janela fixa" para visualizar continuamente
+7. Redimensione a janela conforme necessário (arraste o canto inferior direito)
 ```
 
 ## 📁 Estrutura do projeto
