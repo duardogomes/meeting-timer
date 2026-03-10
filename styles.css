@@ -6,8 +6,8 @@ body {
   height: 390px;
   min-height: 390px;
   max-height: 390px;
-  padding: 6px;
-  overflow: auto;
+  padding: 4px;
+  overflow: hidden;
   resize: none;
   box-sizing: border-box;
 }
@@ -61,7 +61,7 @@ h2 { margin-top: 0; margin-bottom: 6px; }
   justify-content: flex-start;
   gap: 2px;
   flex-wrap: nowrap;
-  margin: 6px 0;
+  margin: 4px 0;
   overflow-x: auto;
 }
 
@@ -81,16 +81,19 @@ div { box-sizing: border-box; }
 
 .participant-row {
   display: flex;
-  gap: 4px;
-  margin-bottom: 8px;
+  gap: 3px;
+  margin-bottom: 4px;
+  align-items: center;
 }
+#participant-input { height: 24px; }
+#add-participant { margin-left: 2px; }
 
 ul {
   padding-left: 10px;
-  max-height: 90px; /* 5 linhas x 18px cada */
-  min-height: 90px;
+  max-height: 84px; /* 5 linhas x ~17px cada */
+  min-height: 84px;
   overflow-y: hidden;
-  margin: 4px 0;
+  margin: 3px 0;
 }
 
 ul.scroll-enabled {
@@ -151,22 +154,22 @@ li { cursor: pointer; margin-bottom: 1px; }
 }
 
 #current-speaker {
-  font-size: 12px;
+  font-size: 11px;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 130px;
+  max-width: 110px;
 }
 
 #timer-display {
   font-size: 18px;
   margin: 0;
   text-align: center;
-  padding: 4px;
+  padding: 3px;
   border-radius: 4px;
-  min-width: 70px;
-  max-width: 90px;
+  min-width: 60px;
+  max-width: 80px;
 }
 
 .speaker-timer-row {
