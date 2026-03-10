@@ -166,6 +166,14 @@ function renderParticipants() {
     console.error('renderParticipants called without participantsList element');
     return;
   }
+
+  // se passar de 5 participantes, ativa scroll no container
+  if (participants.length > 5) {
+    participantsList.classList.add('scroll-enabled');
+  } else {
+    participantsList.classList.remove('scroll-enabled');
+  }
+
   participantsList.innerHTML = '';
   participants.forEach((p, index) => {
     const li = document.createElement('li');

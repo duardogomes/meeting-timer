@@ -62,12 +62,14 @@ h2 { margin-top: 0; margin-bottom: 6px; }
   gap: 2px;
   flex-wrap: nowrap;
   margin: 6px 0;
+  overflow-x: auto;
 }
 
 .action-button {
-  padding: 4px 6px;
+  padding: 3px 6px;
   font-size: 10px;
   min-width: 0;
+  white-space: nowrap;
 }
 
 div { box-sizing: border-box; }
@@ -84,17 +86,21 @@ div { box-sizing: border-box; }
 
 ul {
   padding-left: 10px;
-  max-height: 106px; /* espaço suficiente para 5 linhas pequenas sem scroll */
-  min-height: 106px;
+  max-height: 102px; /* 5 linhas x ~20px cada */
+  min-height: 102px;
   overflow-y: hidden;
   margin: 4px 0;
 }
 
+ul.scroll-enabled {
+  overflow-y: auto;
+}
+
 #participants-list li {
-  line-height: 1.1;
-  padding: 3px 2px;
-  min-height: 20px;
-  font-size: 12px;
+  line-height: 1.0;
+  padding: 2px 2px;
+  min-height: 18px;
+  font-size: 11px;
 }
 
 #participant-input {
@@ -142,23 +148,29 @@ li { cursor: pointer; margin-bottom: 1px; }
 
 #current-speaker {
   font-size: 12px;
-  margin: 4px 0;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 216px;
+  max-width: 130px;
 }
 
 #timer-display {
   font-size: 18px;
-  margin: 8px 0;
+  margin: 0;
   text-align: center;
   padding: 4px;
   border-radius: 4px;
-  min-width: 180px;
-  max-width: 216px;
-  margin-left: auto;
-  margin-right: auto;
+  min-width: 70px;
+  max-width: 90px;
+}
+
+.speaker-timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin: 6px 0;
 }
 
 button { 
